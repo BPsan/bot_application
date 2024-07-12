@@ -53,7 +53,7 @@ async def start_handler(message: Message):
     if cur.fetchone():
         await message.answer('Здраствуйте вот доступный функционал', reply_markup=kb.user_menu)#если пользователь зарегестрирован то ему предлягается выбрать действие
     else:
-        await message.answer("Привет! Я бот-помошник IT-отдела компании Этажи, чем я могу помочь вам?", reply_markup=kb.register_button)
+        await message.answer("Привет! Я бот-помошник IT-отдела компании ..., чем я могу помочь вам?", reply_markup=kb.register_button)
 
 
 #регистрация пользователя с помощью кода
@@ -77,12 +77,12 @@ async def registrate(message: Message, state: FSMContext):
     else:
         await message.answer('Вы не зарегестрированы обратитеть к администратору для уточнения')
 
-#клавиатура для 
 @router.callback_query(F.data == 'riec_registrate')
 async def registrate(callback: CallbackQuery, state: FSMContext):
     await state.set_state(register.code)
     await callback.message.answer(f"Пожалуйста напишите ваш код из РИЕС")
 
+#уголок сотрудника
 @router.message(F.text == 'Что умеет бот?')
 async def help(message: Message):
     await message.answer('Этот бот предназначен для оставления заявки о технических неполадках, если у вас взникла проблема нажмите на кнопку "оставить заявку", если хотите посмотреть статус оставленых заявок нажмите на "мои заявки"')
